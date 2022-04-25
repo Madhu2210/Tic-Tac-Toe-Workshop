@@ -11,6 +11,7 @@ public class TicTac {
         System.out.println("Welcome to Tic Tac Toe Game....!!!");
         board();
         userinput();
+        printBoard();
     }
         public static void board() {
             element = new char[10];
@@ -30,6 +31,27 @@ public class TicTac {
         else
             computer='X';
         System.out.println("User mark is :" +player);
+    }
+
+    public static void printBoard() {
+
+
+        {
+            System.out.println("|---|---|---|");
+            System.out.println("| " + element[0] + " | "
+                    + element[1] + " | " + element[2]
+                    + " |");
+            System.out.println("|-----------|");
+            System.out.println("| " + element[3] + " | "
+                    + element[4] + " | " + element[5]
+                    + " |");
+            System.out.println("|-----------|");
+            System.out.println("| " + element[6] + " | "
+                    + element[7] + " | " + element[8]
+                    + " |");
+            System.out.println("|---|---|---|");
+        }
+
     }
 }
 
