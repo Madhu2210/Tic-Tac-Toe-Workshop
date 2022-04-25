@@ -6,36 +6,39 @@ import java.util.Scanner;
 public class TicTac {
 
     private static char[] element;
+    private static char player;
+
+    private  static  char computer;
+    private static int moves=0;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe Game....!!!");
         board();
         userinput();
         printBoard();
+        gamePlay();
     }
-        public static void board() {
-            element = new char[10];
-            for(int i=1; i<10; i++) {
-                element[i]=' ';
-            }
-        }
-    public static void userinput() {
-        Scanner in=new Scanner(System.in);
-        System.out.println(" Select Your Marker (O or X): ");
-        char player=in.next().charAt(0);
-        char computer;
-        if (player=='X') {
-            computer='O';
-            System.out.println("User mark is :" +player);}
 
-        else
-            computer='X';
-        System.out.println("User mark is :" +player);
+    public static void board() {
+        element = new char[10];
+        for (int i = 0; i < 9; i++) {
+            element[i] = '+';
+        }
+    }
+
+    public static void userinput() {
+        Scanner in = new Scanner(System.in);
+        System.out.println(" Select Your Marker (O or X): ");
+        player = in.next().charAt(0);
+        if (player == 'X') {
+            computer = 'O';
+            System.out.println("User mark is :" + player);
+        } else
+            computer = 'X';
+        System.out.println("User mark is :" + player);
     }
 
     public static void printBoard() {
-
-
         {
             System.out.println("|---|---|---|");
             System.out.println("| " + element[0] + " | "
@@ -51,7 +54,23 @@ public class TicTac {
                     + " |");
             System.out.println("|---|---|---|");
         }
+    }
 
+    public static void gamePlay(){
+        while(moves < 9){
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Please enter the position between 0-8");
+            int position=sc.nextInt();
+            if(element[position]=='+'){
+                element[position]=player;
+                printBoard();
+                moves++;
+                gamePlay();
+            }
+            else {
+                System.out.println("Invalid move");
+            }
+        }
     }
 }
 
