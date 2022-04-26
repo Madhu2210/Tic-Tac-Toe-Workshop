@@ -1,6 +1,5 @@
 package com.bridglabz;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class TicTac {
@@ -12,6 +11,7 @@ public class TicTac {
     private static int moves=0;
     private static int flag=0;
     private static boolean winner=false;
+    private static int block=0;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe Game....!!!");
@@ -94,6 +94,50 @@ public class TicTac {
             }
     }
 
+    public static void checkWinComputer(){
+        for (int i = 0; i < 9; i++) {
+            if (element[i] == ' ') {
+                element[i] = computer;
+                winningConditions(computer);
+                if (winner == false) {
+                    element[i]=' ';
+                }
+                else{
+                    printBoard();
+                    if(winner==true){
+                        System.out.println("Computer has won");
+                        System.exit(0);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void checkBlockComputer(){
+        for (int i = 0; i < 9; i++) {
+            if (element[i] == ' ') {
+                element[i] = player;
+                winningConditions(player);
+                if (winner == true) {
+                    element[i]=computer;
+                    printBoard();
+                    block=1;
+                    winner=false;
+                    if(winner==true){
+                        System.out.println("Computer has won");
+                        System.exit(0);
+                    }
+                }
+                else{
+                    element[i]=' ';
+                }
+            }
+            if (block==1){
+                break;
+            }
+        }
+    }
+
     public static void gamePlay(){
         while(moves < 9){
             if(flag==0){
@@ -117,23 +161,35 @@ public class TicTac {
                 }
             } else if (flag==1) {
                 System.out.println("Computer turn");
-                int position=(int)Math.floor(Math.random() * 10) % 9;
-                if(element[position]==' '){
-                    element[position]=computer;
-                    printBoard();
+                checkWinComputer();
+                checkBlockComputer();
+                if (block==1){
                     moves++;
-                    winningConditions(computer);
-                    if(winner==true){
-                        System.out.println("Computer has won");
-                        System.exit(0);
-                    }
                     flag=0;
-                    gamePlay();
                 }
-                else {
-                    System.out.println("Invalid move");
+                block=0;
+                if (flag==1) {
+                    int position = (int) Math.floor(Math.random() * 10) % 9;
+                    if (element[position] == ' ') {
+                        element[position] = computer;
+                        printBoard();
+                        moves++;
+                        winningConditions(computer);
+                        if (winner == true) {
+                            System.out.println("Computer has won");
+                            System.exit(0);
+                        }
+                        flag = 0;
+                        gamePlay();
+                    } else {
+                        System.out.println("Invalid move");
+                    }
                 }
             }
+        }
+        if (moves==9 && winner==false){
+            System.out.println("It is a Draw");
+            System.exit(0);
         }
     }
 }
