@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a378d9fd-83f5-42aa-a8d5-6bda2bb0ce91" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/bridglabz/TicTac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bridglabz/TicTac.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
